@@ -12,12 +12,14 @@
 if [ -e ./env/bin/activate ]; then
     source ./env/bin/activate
 else
-    virtualenv env
+    virtualenv env --system-site-packages
     source ./env/bin/activate
     python setup.py install
+    pyrcc4 icons.qrc -o gui/qt/icons_rc.py
 fi
 
-export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
+
+# export PYTHONPATH="/usr/local/lib/python2.7/site-packages:$PYTHONPATH"
 
 ./electrum "$@"
 
